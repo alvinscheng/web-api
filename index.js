@@ -20,7 +20,7 @@ app.put('/notes/:id', (req, res) => {
     return note.id === Number(req.params.id)
   })
   if (!note) {
-    res.sendStatus(404)
+    return res.sendStatus(404)
   }
   Object.assign(note, req.body)
   res.sendStatus(200)
