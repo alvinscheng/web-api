@@ -15,4 +15,15 @@ app.post('/notes', (req, res) => {
 
 app.get('/notes', (req, res) => res.json(notes))
 
+app.put('/notes/:id', (req, res) => {
+  const note = notes.find(note => {
+    return note.id === Number(req.params.id)
+  })
+  if (!note) {
+    res.sendStatus(404)
+  }
+  Object.assign(note, req.body)
+  res.sendStatus(200)
+})
+
 app.listen(3000, () => console.log('Listening on 3000!'))
